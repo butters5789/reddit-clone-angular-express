@@ -1,0 +1,9 @@
+{
+  "firebase": "brad-butterfield-reddit-clone",
+  "public": "./",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
