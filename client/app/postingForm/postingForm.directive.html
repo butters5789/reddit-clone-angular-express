@@ -1,0 +1,71 @@
+<div class="row" ng-show="vm.showPostingForm">
+    <div class="col-md-offset-3 col-md-6">
+
+        <div class="well">
+
+            <form name="addPosting" ng-submit="addPosting.$valid && newPosting()">
+
+                <div class="form-group" ng-class="{ 'has-error' : addPosting.title.$invalid && addPosting.title.$touched }">
+                    <label for="title">Title</label>
+                    <input  type="text"
+                            class="form-control"
+                            id="title"
+                            placeholder="Title ..."
+                            name="title"
+                            ng-model="views.newPosting.title"
+                            required>
+                    <h6 class="help-block" ng-show="addPosting.title.$invalid && addPosting.title.$touched">
+                        Title is required.
+                    </h6>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : addPosting.author.$invalid && addPosting.author.$touched }">
+                    <label for="author">Author</label>
+                    <input  type="text"
+                            class="form-control"
+                            id="author"
+                            placeholder="Author ..."
+                            name="author"
+                            ng-model="views.newPosting.author"
+                            required>
+                    <h6 class="help-block" ng-show="addPosting.author.$invalid && addPosting.author.$touched">
+                        Author is required.
+                    </h6>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : addPosting.description.$invalid && addPosting.description.$touched }">
+                    <label for="description">Description</label>
+                    <textarea   class="form-control"
+                                id="description"
+                                rows="3"
+                                name="description"
+                                ng-model="views.newPosting.description"
+                                required>
+                    </textarea>
+                    <h6 class="help-block" ng-show="addPosting.description.$invalid && addPosting.description.$touched">
+                        Description is required.
+                    </h6>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : addPosting.image.$invalid && addPosting.image.$touched }">
+                    <label for="image">Image URL</label>
+                    <input  type="text"
+                            class="form-control"
+                            id="image"
+                            placeholder="Image URL ..."
+                            name="image"
+                            ng-model="views.newPosting.image"
+                            required>
+                    <h6 class="help-block" ng-show="addPosting.image.$invalid && addPosting.image.$touched">
+                        Image is required.
+                    </h6>
+                </div>
+
+                <button type="submit" class="btn btn-default" ng-disabled="addPosting.$invalid">Publish Post</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>

@@ -9,16 +9,25 @@
             scope: {},
             templateUrl: '/app/nav/nav.directive.html',
             controller: controller,
-            controllerAs: 'vm'
+            controllerAs: 'nav'
         };
     }
 
-    controller.$inject = ['$http'];
+    controller.$inject = ['$http', '$scope'];
 
-    function controller($http) {
-        var vm = this;
+    function controller($http, $scope) {
+        var nav = this;
+
+        nav.hello = "nav says hello";
+
+        nav.clickSubmitPost = function() {
+            if (vm.showPostingForm) {
+                vm.showPostingForm = false;
+            } else {
+                vm.showPostingForm = true;
+            }
+        };
         activate();
-
         function activate() {
 
         }
