@@ -14,12 +14,13 @@
 
     function setupRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('app', {
-                url: "/",
-                template: "<app></app>"
+            .state('home', {
+                url: '/',
+                template: '<rc-app></rc-app>'
             });
     }
-}());
+
+})();
