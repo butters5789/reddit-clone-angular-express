@@ -11,6 +11,7 @@
 
         var service = {
             allPostings: getAllPostings,
+            allComments: getAllComments,
             voteUp: getVoteUp,
             voteDown: getVoteDown
         };
@@ -19,6 +20,16 @@
 
         function getAllPostings() {
             return $http.get('http://localhost:3000/api/postings')
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return err;
+                });
+        }
+
+        function getAllComments() {
+            return $http.get('http://localhost:3000/api/comments')
                 .then(function(res) {
                     return res;
                 })

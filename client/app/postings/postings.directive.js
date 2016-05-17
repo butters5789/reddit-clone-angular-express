@@ -19,6 +19,7 @@
         var postings = this;
 
         postings.allPostings = [];
+        postings.allComments = [];
         postings.voteUp = upVote;
         postings.voteDown = downVote;
         activate();
@@ -29,6 +30,14 @@
                     console.log(res);
                 } else {
                     return postings.allPostings = res.data;
+                }
+            });
+
+            redditServices.allComments().then(function(res) {
+                if (res.status !== 200) {
+                    console.log(res);
+                } else {
+                    return postings.allComments = res.data;
                 }
             });
         }

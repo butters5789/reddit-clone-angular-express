@@ -10,6 +10,15 @@ router.get('/postings', function(req, res, next) {
         });
 });
 
+router.get('/comments', function(req, res, next) {
+    knex('comments')
+        .join('users', 'comments.author_id', 'users.id')
+        .select('comments.posting_id', 'users.first_name', 'users.last_name', 'comments.comment')
+        .then(function(comments) {
+            res.json(comments);
+        });
+});
+
 router.post('/postings/votes/', function(req, res, next) {
     knex('postings')
         .where({ id: req.body.id })
