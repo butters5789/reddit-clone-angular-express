@@ -8,16 +8,48 @@
     factory.$inject = ['$http'];
 
     function factory($http) {
+
         var service = {
-            trueFalseSwitch: flip,
-            switcher: true
+            allPostings: getAllPostings,
+            voteUp: getVoteUp,
+            voteDown: getVoteDown
         };
 
         return service;
 
-        function flip() {
-            this.switcher = !this.switcher;
-            return this.switcher;
+        function getAllPostings() {
+            return $http.get('http://localhost:3000/api/postings')
+                .then(function(res) {
+                    return res.data;
+                });
+        }
+
+        function getVoteUp(post) {
+            post.votes++;
+            return $http.post('http://localhost:3000/api/postings/votes', {
+                    'id': post.id,
+                    'votes': post.votes
+                })
+                .then(function(res) {
+                    // console.log('res', res);
+                })
+                .catch(function(err) {
+                    console.log('err', err);
+                });
+        }
+
+        function getVoteDown(post) {
+            post.votes--;
+            return $http.post('http://localhost:3000/api/postings/votes', {
+                    'id': post.id,
+                    'votes': post.votes
+                })
+                .then(function(res) {
+                    // console.log('res', res);
+                })
+                .catch(function(err) {
+                    console.log('err', err);
+                });
         }
     }
 

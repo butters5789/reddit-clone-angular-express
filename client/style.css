@@ -8,3 +8,8 @@ body {
 
 .row-pad {
   margin-top: 20px; }
+
+.posting {
+  margin-top: 20px; }
+  .posting img {
+    max-width: 100%; }

@@ -8,7 +8,8 @@
         return {
             templateUrl: '/app/postingForm/postingForm.directive.html',
             controller: controller,
-            controllerAs: 'post'
+            controllerAs: 'post',
+            bindToController: true
         };
     }
 

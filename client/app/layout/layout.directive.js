@@ -9,7 +9,8 @@
             restrict: 'E',
             templateUrl: '/app/layout/layout.directive.html',
             controller: controller,
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            bindToController: true
         };
     }
 

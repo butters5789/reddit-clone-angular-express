@@ -21,18 +21,18 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By
-                        <span ng-bind="views.sort"></span>
+                        <span ng-bind="nav.sort"></span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#" onclick="return false;" ng-click="views.sort = 'votes'">Votes</a>
+                            <a href="#" onclick="return false;" ng-click="nav.sort = 'votes'">Votes</a>
                         </li>
                         <li>
-                            <a href="#" onclick="return false;" ng-click="views.sort = 'date'">Date</a>
+                            <a href="#" onclick="return false;" ng-click="nav.sort = 'date'">Date</a>
                         </li>
                         <li>
-                            <a href="#" onclick="return false;" ng-click="views.sort = 'title'">Title</a>
+                            <a href="#" onclick="return false;" ng-click="nav.sort = 'title'">Title</a>
                         </li>
                     </ul>
                 </li>

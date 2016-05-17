@@ -8,7 +8,8 @@
         return {
             templateUrl: '/app/nav/nav.directive.html',
             controller: controller,
-            controllerAs: 'nav'
+            controllerAs: 'nav',
+            bindToController: true
         };
     }
 
@@ -16,11 +17,11 @@
 
     function controller($http, $scope) {
         var nav = this;
+        nav.sort = "votes";
 
         nav.clickSubmitPost = function() {
             $scope.post.showPostingForm = !$scope.post.showPostingForm;
         };
-
     }
 
 })();

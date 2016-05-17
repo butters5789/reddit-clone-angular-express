@@ -1,0 +1,73 @@
+<div class="row posting" ng-repeat=" post in postings.allPostings | orderBy: '-' + nav.sort | filter:searchText ">
+    <div class="col-md-12 well">
+
+        <div class="row">
+
+            <div class="col-md-3 imageSpace">
+                <img ng-src="{{ post.image_url }}" alt="{{ post.title }}"/>
+            </div>
+
+            <div class="col-md-9">
+
+                <h3>
+                    <span ng-bind="post.title"></span>
+                    |
+                    <a href="#" onclick="return false;" ng-click="postings.voteUp(post)">
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                    </a>
+                    <a href="#" onclick="return false;" ng-click="postings.voteDown(post)">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                    </a>
+                    <span ng-bind="post.votes" ng-class="{green: post.votes > 0, red: post.votes < 0, black: post.votes === 0}"></span>
+                </h3>
+
+                <h4 class="text-right">By:
+                    <span ng-bind="post.first_name"></span> <span ng-bind="post.last_name"></span>
+                </h4>
+
+                <p>
+                    <span ng-bind="post.posting"></span>
+                </p>
+
+                <h5>
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    {{ post.created_at }}
+                    |
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                    <a href="#" onclick="return false;" ng-click="showComments(post)">
+                        <span ng-bind="count.length"></span>
+                        <ng-pluralize count="count.length" when="{'one': 'comment', 'other': 'comments'}"></ng-pluralize>
+                    </a>
+                    |
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    <a href="#" onclick="return false;" ng-click="showAddComment(post)">Add Comment</a>
+                </h5>
+
+                <div ng-show="post.showAddComment">
+                    <form class="form-inline" name="addComment" ng-submit="addComment.$valid && newComment(posting)">
+                        <div class="form-group" ng-class="{ 'has-error' : addComment.author.$invalid }">
+                            <label for="author">Author:</label>
+                            <input type="text" class="form-control" id="author" placeholder="Author" name="author" ng-model="views.newComment.author" minlength=3 required>
+                            <h6 class="help-block text-right" ng-show="addComment.author.$invalid">Author is invalid</h6>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : addComment.comment.$invalid }">
+                            <label for="comment">Comment:</label>
+                            <input type="text" class="form-control" id="comment" placeholder="Your comment ..." name="comment" ng-model="views.newComment.comment" minlength=3 required>
+                            <h6 class="help-block text-right" ng-show="addComment.comment.$invalid">Comment is invalid</h6>
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="addComment.$invalid">Add Comment</button>
+                    </form>
+                </div>
+
+                <div ng-show="posting.showComments">
+                    <span ng-repeat=" comment in views.comments | filter:{'postingID': posting.id}:true as count ">
+                        <comments data="comment"></comments>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
