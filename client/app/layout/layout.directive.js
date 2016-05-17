@@ -9,25 +9,14 @@
             restrict: 'E',
             templateUrl: '/app/layout/layout.directive.html',
             controller: controller,
-            controllerAs: 'layout'
+            controllerAs: 'vm'
         };
     }
 
     controller.$inject = ['$http', '$scope'];
 
     function controller($http, $scope) {
-        var layout = this;
-
-        layout.hello = "layout says hello";
-
-        console.log('layout', $scope.layout);
-        console.log('layout', $scope.nav);
-        console.log('layout', $scope.post);
-
-        activate();
-        function activate() {
-
-        }
+        var vm = this;
 
     }
 

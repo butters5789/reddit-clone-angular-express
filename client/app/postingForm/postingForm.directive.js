@@ -6,7 +6,6 @@
 
     function postingFormDirective() {
         return {
-            scope: {},
             templateUrl: '/app/postingForm/postingForm.directive.html',
             controller: controller,
             controllerAs: 'post'
@@ -18,15 +17,8 @@
     function controller($http, $scope) {
         var post = this;
 
-        post.hello = "posting says hello";
+        post.showPostingForm = false;
 
-        post.showPostingForm = true;
-
-        activate();
-
-        function activate() {
-
-        }
     }
 
 })();

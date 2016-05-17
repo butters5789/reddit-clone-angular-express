@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('knex')(require('../knexfile')[process.env.NODE_ENV || 'development']);
+const express = require('express');
+const router = express.Router();
+const knex = require('../db');
 
 router.get('/', function(req, res, next) {
     res.json({

@@ -1,4 +1,4 @@
-<div class="row" ng-show="vm.showPostingForm">
+<div class="row row-pad" ng-show="post.showPostingForm">
     <div class="col-md-offset-3 col-md-6">
 
         <div class="well">
@@ -12,6 +12,7 @@
                             id="title"
                             placeholder="Title ..."
                             name="title"
+                            maxlength="255"
                             ng-model="views.newPosting.title"
                             required>
                     <h6 class="help-block" ng-show="addPosting.title.$invalid && addPosting.title.$touched">
@@ -26,6 +27,7 @@
                             id="author"
                             placeholder="Author ..."
                             name="author"
+                            maxlength="255"
                             ng-model="views.newPosting.author"
                             required>
                     <h6 class="help-block" ng-show="addPosting.author.$invalid && addPosting.author.$touched">
@@ -54,6 +56,7 @@
                             id="image"
                             placeholder="Image URL ..."
                             name="image"
+                            maxlength="255"
                             ng-model="views.newPosting.image"
                             required>
                     <h6 class="help-block" ng-show="addPosting.image.$invalid && addPosting.image.$touched">

@@ -1,12 +1,14 @@
+require('dotenv').config();
+
 module.exports = {
 
     development: {
-        client: 'postgres',
-        connection: 'postgres://localhost/reddit-clone-users'
+        client: 'pg',
+        connection: process.env.DATABASE_URL
     },
 
     production: {
-        client: 'postgresql',
+        client: 'pg',
         connection: process.env.DATABASE_URL
     }
 

@@ -9,13 +9,15 @@
 
     function factory($http) {
         var service = {
-            postingFormStatus: getPostingFormStatus
+            trueFalseSwitch: flip,
+            switcher: true
         };
 
         return service;
 
-        function getPostingFormStatus(data) {
-            return data;
+        function flip() {
+            this.switcher = !this.switcher;
+            return this.switcher;
         }
     }
 

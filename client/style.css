@@ -5,3 +5,6 @@ body {
 .navbar-nav input {
   margin-top: 8px;
   margin-bottom: 8px; }
+
+.row-pad {
+  margin-top: 20px; }
