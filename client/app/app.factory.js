@@ -20,7 +20,10 @@
         function getAllPostings() {
             return $http.get('http://localhost:3000/api/postings')
                 .then(function(res) {
-                    return res.data;
+                    return res;
+                })
+                .catch(function(err) {
+                    return err;
                 });
         }
 
@@ -31,10 +34,10 @@
                     'votes': post.votes
                 })
                 .then(function(res) {
-                    // console.log('res', res);
+                    return res;
                 })
                 .catch(function(err) {
-                    console.log('err', err);
+                    return err;
                 });
         }
 
@@ -45,12 +48,13 @@
                     'votes': post.votes
                 })
                 .then(function(res) {
-                    // console.log('res', res);
+                    return res;
                 })
                 .catch(function(err) {
-                    console.log('err', err);
+                    return err;
                 });
         }
+
     }
 
 }());

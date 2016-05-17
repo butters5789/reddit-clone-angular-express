@@ -12,8 +12,16 @@ body {
     margin-top: 20px;
 }
 .posting {
-    margin-top: 20px;
     img {
         max-width: 100%;
+    }
+    .green {
+        color: green;
+    }
+    .red {
+        color: red;
+    }
+    .black {
+        color: auto;
     }
 }

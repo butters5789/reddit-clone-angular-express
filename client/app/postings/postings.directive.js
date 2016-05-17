@@ -24,18 +24,29 @@
         activate();
 
         function activate() {
-            redditServices.allPostings().then(function(data) {
-                postings.allPostings = data;
-                return postings.allPostings;
+            redditServices.allPostings().then(function(res) {
+                if (res.status !== 200) {
+                    console.log(res);
+                } else {
+                    return postings.allPostings = res.data;
+                }
             });
         }
 
         function upVote(post) {
-            redditServices.voteUp(post);
+            redditServices.voteUp(post).then(function(res) {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+            });
         }
 
         function downVote(post) {
-            redditServices.voteDown(post);
+            redditServices.voteDown(post).then(function(res) {
+                if (res.status !== 200) {
+                    console.log(res);
+                }
+            });
         }
     }
 

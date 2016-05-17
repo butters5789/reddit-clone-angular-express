@@ -31,7 +31,7 @@
 
                 <h5>
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    {{ post.created_at }}
+                    <time title="{{ post.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.created_at | amCalendar }}</time>
                     |
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     <a href="#" onclick="return false;" ng-click="showComments(post)">

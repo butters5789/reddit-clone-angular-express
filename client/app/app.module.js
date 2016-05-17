@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var dependencies = ['ui.router'];
+    var dependencies = ['ui.router', 'angularMoment'];
 
     angular.module('RedditClone', dependencies)
         .config(setupRoutes);

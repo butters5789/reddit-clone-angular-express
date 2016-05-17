@@ -9,7 +9,14 @@ body {
 .row-pad {
   margin-top: 20px; }
 
-.posting {
-  margin-top: 20px; }
-  .posting img {
-    max-width: 100%; }
+.posting img {
+  max-width: 100%; }
+
+.posting .green {
+  color: green; }
+
+.posting .red {
+  color: red; }
+
+.posting .black {
+  color: auto; }
