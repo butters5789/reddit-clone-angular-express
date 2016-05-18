@@ -31,7 +31,9 @@
 
                 <h5>
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <time title="{{ post.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.created_at | amCalendar }}</time>
+                    <time title="{{ post.created_at | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">
+                        {{ post.created_at | amCalendar }}
+                    </time>
                     |
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     <a href="#" onclick="return false;" ng-click="showComments(post)">
@@ -44,24 +46,55 @@
                 </h5>
 
                 <div ng-show="true">
-                    <form class="form-inline" name="addComment" ng-submit="addComment.$valid && newComment(posting)">
-                        <div class="form-group" ng-class="{ 'has-error' : addComment.author.$invalid }">
+
+                    <form class="form-inline"
+                          name="addComment"
+                          ng-submit="addComment.$valid && postings.addNewComment({newComment: postings.newComment, post_id: post.id})">
+
+                        <div class="form-group" ng-class="{ 'has-error' : addComment.author.$invalid && addComment.author.$touched }">
                             <label for="author">Author:</label>
-                            <input type="text" class="form-control" id="author" placeholder="Author" name="author" ng-model="views.newComment.author" minlength=3 required>
-                            <h6 class="help-block text-right" ng-show="addComment.author.$invalid">Author is invalid</h6>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="author"
+                                    name="author"
+                                    ng-model="postings.newComment.author_id"
+                                    disabled
+                                    required>
+                            <h6 class="help-block text-right" ng-show="addComment.author.$invalid && addComment.author.$touched">
+                                Author is required.
+                            </h6>
                         </div>
-                        <div class="form-group" ng-class="{ 'has-error' : addComment.comment.$invalid }">
+
+                        <div class="form-group" ng-class="{ 'has-error' : addComment.comment.$invalid && addComment.comment.$touched }">
                             <label for="comment">Comment:</label>
-                            <input type="text" class="form-control" id="comment" placeholder="Your comment ..." name="comment" ng-model="views.newComment.comment" minlength=3 required>
-                            <h6 class="help-block text-right" ng-show="addComment.comment.$invalid">Comment is invalid</h6>
+                            <input  type="text"
+                                    class="form-control"
+                                    id="comment"
+                                    placeholder="Your comment ..."
+                                    name="comment"
+                                    ng-model="postings.newComment.comment"
+                                    required>
+                            <h6 class="help-block text-right" ng-show="addComment.comment.$invalid && addComment.comment.$touched">
+                                Comment is required.
+                            </h6>
                         </div>
-                        <button type="submit" class="btn btn-default" ng-disabled="addComment.$invalid">Add Comment</button>
+
+                        <button type="submit" class="btn btn-default" ng-disabled="addComment.$invalid">
+                                Add Comment
+                        </button>
+
                     </form>
+
                 </div>
 
                 <div ng-show="true">
                     <span ng-repeat=" comment in postings.allComments | filter : { 'posting_id': post.id } : true as commentCount ">
-                        <p><strong>{{ comment.first_name }} {{ comment.last_name }}</strong>: {{ comment.comment }}</p>
+                        <p>
+                            <strong>
+                                {{ comment.first_name }} {{ comment.last_name }}:
+                            </strong>
+                            {{ comment.comment }}
+                        </p>
                     </span>
                 </div>
 

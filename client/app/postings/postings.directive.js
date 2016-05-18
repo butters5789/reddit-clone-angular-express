@@ -22,6 +22,9 @@
         postings.allComments = [];
         postings.voteUp = upVote;
         postings.voteDown = downVote;
+        postings.addNewComment = newComment;
+        postings.newComment = {};
+        postings.newComment.author_id = 1;
         activate();
 
         function activate() {
@@ -37,6 +40,7 @@
                 if (res.status !== 200) {
                     console.log(res);
                 } else {
+                    postings.newComment.comment = "";
                     return postings.allComments = res.data;
                 }
             });
@@ -57,6 +61,17 @@
                 }
             });
         }
+
+        function newComment(comment) {
+            redditServices.addNewComment(comment).then(function(res) {
+                if (res.status !== 200) {
+                    console.log(res);
+                } else {
+                    activate();
+                }
+            });
+        }
+
     }
 
 })();

@@ -12,8 +12,9 @@
         var service = {
             allPostings: getAllPostings,
             allComments: getAllComments,
-            voteUp: getVoteUp,
-            voteDown: getVoteDown
+            voteUp: postVoteUp,
+            voteDown: postVoteDown,
+            addNewComment: postAddNewComment
         };
 
         return service;
@@ -38,7 +39,7 @@
                 });
         }
 
-        function getVoteUp(post) {
+        function postVoteUp(post) {
             post.votes++;
             return $http.post('http://localhost:3000/api/postings/votes', {
                     'id': post.id,
@@ -52,11 +53,25 @@
                 });
         }
 
-        function getVoteDown(post) {
+        function postVoteDown(post) {
             post.votes--;
             return $http.post('http://localhost:3000/api/postings/votes', {
                     'id': post.id,
                     'votes': post.votes
+                })
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return err;
+                });
+        }
+
+        function postAddNewComment(comment) {
+            return $http.post('http://localhost:3000/api/newComment', {
+                    'author_id': comment.newComment.author_id,
+                    'comment': comment.newComment.comment,
+                    'posting_id': comment.post_id
                 })
                 .then(function(res) {
                     return res;

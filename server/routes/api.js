@@ -5,6 +5,15 @@ const knex = require('../db');
 router.get('/postings', function(req, res, next) {
     knex('postings')
         .join('users', 'postings.author_id', 'users.id')
+        .select('postings.id',
+                'postings.title',
+                'postings.created_at',
+                'postings.posting',
+                'postings.votes',
+                'postings.image_url',
+                'users.first_name',
+                'users.last_name'
+            )
         .then(function(posting) {
             res.json(posting);
         });
@@ -13,9 +22,25 @@ router.get('/postings', function(req, res, next) {
 router.get('/comments', function(req, res, next) {
     knex('comments')
         .join('users', 'comments.author_id', 'users.id')
-        .select('comments.posting_id', 'users.first_name', 'users.last_name', 'comments.comment')
+        .select('comments.posting_id',
+                'users.first_name',
+                'users.last_name',
+                'comments.comment'
+            )
         .then(function(comments) {
             res.json(comments);
+        });
+});
+
+router.post('/newComment', function(req, res, next) {
+    knex('comments')
+        .insert({
+            posting_id: req.body.posting_id,
+            author_id: req.body.author_id,
+            comment: req.body.comment
+        })
+        .then(function() {
+            res.end();
         });
 });
 
