@@ -1,0 +1,52 @@
+<div ng-show="comments.hideCommentForm" class="row-pad">
+
+    <form class="form-inline"
+          name="addComment"
+          ng-submit="addComment.$valid && comments.addNewComment({newComment: comments.newComment, post_id: post.id})">
+
+        <div class="form-group" ng-class="{ 'has-error' : addComment.author.$invalid && addComment.author.$touched }">
+            <label for="author">Author:</label>
+            <input  type="number"
+                    class="form-control"
+                    id="author"
+                    placeholder="Type a 1, 2, or 3 ..."
+                    name="author"
+                    ng-model="comments.newComment.author_id"
+                    required>
+            <h6 class="help-block text-right" ng-show="addComment.author.$invalid && addComment.author.$touched">
+                Author is required.
+            </h6>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : addComment.comment.$invalid && addComment.comment.$touched }">
+            <label for="comment">Comment:</label>
+            <input  type="text"
+                    class="form-control"
+                    id="comment"
+                    placeholder="Your comment ..."
+                    name="comment"
+                    ng-model="comments.newComment.comment"
+                    required>
+            <h6 class="help-block text-right" ng-show="addComment.comment.$invalid && addComment.comment.$touched">
+                Comment is required.
+            </h6>
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-disabled="addComment.$invalid">
+                Add Comment
+        </button>
+
+    </form>
+
+</div>
+
+<div ng-show="comments.hideComments" class="row-pad">
+    <span ng-repeat=" comment in comments.allComments | filter : { 'posting_id': post.id } : true as commentCount ">
+        <p>
+            <strong>
+                {{ comment.first_name }} {{ comment.last_name }}:
+            </strong>
+            {{ comment.comment }}
+        </p>
+    </span>
+</div>

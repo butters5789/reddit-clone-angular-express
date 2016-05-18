@@ -36,67 +36,16 @@
                     </time>
                     |
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                    <a href="#" onclick="return false;" ng-click="showComments(post)">
+                    <a href="#" onclick="return false;" ng-click="comments.showComments()">
                         <span ng-bind="commentCount.length"></span>
                         <ng-pluralize count="commentCount.length" when="{'one': 'comment', 'other': 'comments'}"></ng-pluralize>
                     </a>
                     |
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <a href="#" onclick="return false;" ng-click="showAddComment(post)">Add Comment</a>
+                    <a href="#" onclick="return false;" ng-click="comments.showAddComment()">Add Comment</a>
                 </h5>
 
-                <div ng-show="true">
-
-                    <form class="form-inline"
-                          name="addComment"
-                          ng-submit="addComment.$valid && postings.addNewComment({newComment: postings.newComment, post_id: post.id})">
-
-                        <div class="form-group" ng-class="{ 'has-error' : addComment.author.$invalid && addComment.author.$touched }">
-                            <label for="author">Author:</label>
-                            <input  type="text"
-                                    class="form-control"
-                                    id="author"
-                                    name="author"
-                                    ng-model="postings.newComment.author_id"
-                                    disabled
-                                    required>
-                            <h6 class="help-block text-right" ng-show="addComment.author.$invalid && addComment.author.$touched">
-                                Author is required.
-                            </h6>
-                        </div>
-
-                        <div class="form-group" ng-class="{ 'has-error' : addComment.comment.$invalid && addComment.comment.$touched }">
-                            <label for="comment">Comment:</label>
-                            <input  type="text"
-                                    class="form-control"
-                                    id="comment"
-                                    placeholder="Your comment ..."
-                                    name="comment"
-                                    ng-model="postings.newComment.comment"
-                                    required>
-                            <h6 class="help-block text-right" ng-show="addComment.comment.$invalid && addComment.comment.$touched">
-                                Comment is required.
-                            </h6>
-                        </div>
-
-                        <button type="submit" class="btn btn-default" ng-disabled="addComment.$invalid">
-                                Add Comment
-                        </button>
-
-                    </form>
-
-                </div>
-
-                <div ng-show="true">
-                    <span ng-repeat=" comment in postings.allComments | filter : { 'posting_id': post.id } : true as commentCount ">
-                        <p>
-                            <strong>
-                                {{ comment.first_name }} {{ comment.last_name }}:
-                            </strong>
-                            {{ comment.comment }}
-                        </p>
-                    </span>
-                </div>
+                <rc-comments></rc-comments>
 
             </div>
 

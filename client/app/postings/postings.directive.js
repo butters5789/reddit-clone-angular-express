@@ -13,18 +13,14 @@
         };
     }
 
-    controller.$inject = ['$http', '$scope', 'redditServices'];
+    controller.$inject = ['redditServices'];
 
-    function controller($http, $scope, redditServices) {
+    function controller(redditServices) {
         var postings = this;
 
         postings.allPostings = [];
-        postings.allComments = [];
         postings.voteUp = upVote;
         postings.voteDown = downVote;
-        postings.addNewComment = newComment;
-        postings.newComment = {};
-        postings.newComment.author_id = 1;
         activate();
 
         function activate() {
@@ -33,15 +29,6 @@
                     console.log(res);
                 } else {
                     return postings.allPostings = res.data;
-                }
-            });
-
-            redditServices.allComments().then(function(res) {
-                if (res.status !== 200) {
-                    console.log(res);
-                } else {
-                    postings.newComment.comment = "";
-                    return postings.allComments = res.data;
                 }
             });
         }
@@ -58,16 +45,6 @@
             redditServices.voteDown(post).then(function(res) {
                 if (res.status !== 200) {
                     console.log(res);
-                }
-            });
-        }
-
-        function newComment(comment) {
-            redditServices.addNewComment(comment).then(function(res) {
-                if (res.status !== 200) {
-                    console.log(res);
-                } else {
-                    activate();
                 }
             });
         }
