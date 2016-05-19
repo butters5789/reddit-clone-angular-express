@@ -1,9 +1,9 @@
-<div class="row row-pad" ng-show="post.showPostingForm">
+<div class="row row-pad" ng-show="postingForm.showPostingForm">
     <div class="col-md-offset-3 col-md-6">
 
         <div class="well">
 
-            <form name="addPosting" ng-submit="addPosting.$valid && newPosting()">
+            <form name="addPosting" ng-submit="addPosting.$valid && postingForm.addNewPosting(postingForm.newPosting)">
 
                 <div class="form-group" ng-class="{ 'has-error' : addPosting.title.$invalid && addPosting.title.$touched }">
                     <label for="title">Title</label>
@@ -13,7 +13,7 @@
                             placeholder="Title ..."
                             name="title"
                             maxlength="255"
-                            ng-model="views.newPosting.title"
+                            ng-model="postingForm.newPosting.title"
                             required>
                     <h6 class="help-block" ng-show="addPosting.title.$invalid && addPosting.title.$touched">
                         Title is required.
@@ -28,7 +28,7 @@
                             placeholder="Author ..."
                             name="author"
                             maxlength="255"
-                            ng-model="views.newPosting.author"
+                            ng-model="postingForm.newPosting.author_id"
                             required>
                     <h6 class="help-block" ng-show="addPosting.author.$invalid && addPosting.author.$touched">
                         Author is required.
@@ -39,9 +39,10 @@
                     <label for="description">Description</label>
                     <textarea   class="form-control"
                                 id="description"
+                                placeholder="Description ..."
                                 rows="3"
                                 name="description"
-                                ng-model="views.newPosting.description"
+                                ng-model="postingForm.newPosting.posting"
                                 required>
                     </textarea>
                     <h6 class="help-block" ng-show="addPosting.description.$invalid && addPosting.description.$touched">
@@ -57,7 +58,7 @@
                             placeholder="Image URL ..."
                             name="image"
                             maxlength="255"
-                            ng-model="views.newPosting.image"
+                            ng-model="postingForm.newPosting.image_url"
                             required>
                     <h6 class="help-block" ng-show="addPosting.image.$invalid && addPosting.image.$touched">
                         Image is required.

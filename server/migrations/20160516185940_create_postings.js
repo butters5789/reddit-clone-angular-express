@@ -6,9 +6,9 @@ exports.up = function(knex, Promise) {
     table.string('title');
     table.string('image_url');
     table.text('posting');
-    table.integer('votes');
+    table.integer('votes').defaultTo(0);
     table.timestamp('created_at').defaultTo(knex.fn.now());
-    table.timestamp('updated_at');
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
   })
 };
 

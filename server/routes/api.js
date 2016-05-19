@@ -19,6 +19,19 @@ router.get('/postings', function(req, res, next) {
         });
 });
 
+router.post('/newPosting', function(req, res, next) {
+    knex('postings')
+        .insert({
+            author_id: req.body.author_id,
+            title: req.body.title,
+            image_url: req.body.image_url,
+            posting: req.body.posting
+        })
+        .then(function(data) {
+            res.end();
+        });
+});
+
 router.get('/comments', function(req, res, next) {
     knex('comments')
         .join('users', 'comments.author_id', 'users.id')

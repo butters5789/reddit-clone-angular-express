@@ -20,7 +20,7 @@
         nav.sort = "votes";
 
         nav.clickSubmitPost = function() {
-            $scope.post.showPostingForm = !$scope.post.showPostingForm;
+            $scope.postingForm.showPostingForm = !$scope.postingForm.showPostingForm;
         };
     }
 

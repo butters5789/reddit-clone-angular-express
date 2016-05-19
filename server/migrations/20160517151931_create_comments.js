@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.integer('author_id');
     table.text('comment');
     table.timestamp('created_at').defaultTo(knex.fn.now());
-    table.timestamp('updated_at');
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
   })
 };
 

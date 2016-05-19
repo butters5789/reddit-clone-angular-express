@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('first_name');
     table.string('last_name');
     table.timestamp('created_at').defaultTo(knex.fn.now());
-    table.timestamp('updated_at');
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
   })
 };
 

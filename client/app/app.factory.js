@@ -14,7 +14,8 @@
             allComments: getAllComments,
             voteUp: postVoteUp,
             voteDown: postVoteDown,
-            addNewComment: postAddNewComment
+            addNewComment: postAddNewComment,
+            newPosting
         };
 
         return service;
@@ -29,8 +30,39 @@
                 });
         }
 
+        function newPosting(posting) {
+            let data = {
+                    'author_id': 1,
+                    'title': posting.title,
+                    'image_url': posting.image_url,
+                    'posting': posting.posting
+                };
+
+            return $http.post('http://localhost:3000/api/newPosting', data)
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return err;
+                });
+        }
+
         function getAllComments() {
             return $http.get('http://localhost:3000/api/comments')
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return err;
+                });
+        }
+
+        function postAddNewComment(comment) {
+            return $http.post('http://localhost:3000/api/newComment', {
+                    'author_id': comment.newComment.author_id,
+                    'comment': comment.newComment.comment,
+                    'posting_id': comment.post_id
+                })
                 .then(function(res) {
                     return res;
                 })
@@ -58,20 +90,6 @@
             return $http.post('http://localhost:3000/api/postings/votes', {
                     'id': post.id,
                     'votes': post.votes
-                })
-                .then(function(res) {
-                    return res;
-                })
-                .catch(function(err) {
-                    return err;
-                });
-        }
-
-        function postAddNewComment(comment) {
-            return $http.post('http://localhost:3000/api/newComment', {
-                    'author_id': comment.newComment.author_id,
-                    'comment': comment.newComment.comment,
-                    'posting_id': comment.post_id
                 })
                 .then(function(res) {
                     return res;
